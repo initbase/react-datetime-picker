@@ -130,6 +130,10 @@ function App() {
 
           <span className="demo-toc-group">Locale</span>
           <a href="#locale-zh">Chinese (zh-CN)</a>
+
+          <span className="demo-toc-group">Links</span>
+          <a href="/">Docs</a>
+          <a className="demo-support" href="https://ko-fi.com/burhanahmeed">Support ❤️</a>
         </div>
       </nav>
 

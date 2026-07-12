@@ -70,6 +70,16 @@ section {
   background: #f3f4f6;
 }
 
+.demo-toc-links a.demo-support {
+  font-weight: 700;
+  color: #a16207;
+  background: #fef9c3;
+}
+
+.demo-toc-links a.demo-support:hover {
+  background: #fef08a;
+}
+
 .demo-squared .rdp-calendar-day,
 .demo-squared .rdp-calendar-day--range-start,
 .demo-squared .rdp-calendar-day--range-end,
