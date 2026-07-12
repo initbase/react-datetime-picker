@@ -22,12 +22,12 @@ function HomepageHeader() {
             to="/docs/intro">
             Get Started
           </Link>
-          <Link
+          <a
             className="button button--secondary button--lg"
-            to="/demo"
+            href="/react-datetime-picker/demo/"
             style={{marginLeft: 12}}>
             View Demo
-          </Link>
+          </a>
         </div>
       </div>
     </header>

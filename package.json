@@ -11,6 +11,7 @@
     "typecheck": "npm run typecheck -w packages/ui && npm run typecheck -w apps/demo && npm run typecheck -w apps/docs",
     "dev:demo": "npm run dev -w apps/demo",
     "dev:docs": "npm run start -w apps/docs",
-    "publish:ui": "cd packages/ui && npm publish --access public"
+    "publish:ui": "cd packages/ui && npm publish --access public",
+    "deploy:build": "npm run build && npm run build -w apps/docs && npm run build -w apps/demo && cp -r apps/demo/dist apps/docs/build/demo"
   }
 }

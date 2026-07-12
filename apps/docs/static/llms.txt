@@ -5,10 +5,14 @@
 ## Quick links
 
 - Docs: https://initbase.github.io/react-datetime-picker/docs/intro
-- Demo: https://initbase.github.io/react-datetime-picker/demo
+- Demo: https://initbase.github.io/react-datetime-picker/demo/
 - GitHub: https://github.com/initbase/react-datetime-picker
 - NPM: https://www.npmjs.com/package/@initbase/react-datetime-picker
 - Support: https://ko-fi.com/burhanahmeed
+
+## Deploy
+
+The site is deployed to GitHub Pages via GitHub Actions. On every push to `main`, a workflow builds the UI package, Docusaurus docs, and Vite demo, copies the demo build into `apps/docs/build/demo/`, and deploys the combined output to the `gh-pages` environment.
 
 ## Key features
 

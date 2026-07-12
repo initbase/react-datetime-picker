@@ -15,12 +15,12 @@ const config: Config = {
   },
 
   url: 'https://initbase.github.io',
-  baseUrl: '/',
+  baseUrl: '/react-datetime-picker/',
 
   organizationName: 'initbase',
   projectName: 'react-datetime-picker',
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -53,7 +53,7 @@ const config: Config = {
       title: 'React Datetime Picker',
       items: [
         {to: '/docs/intro', label: 'Docs', position: 'left'},
-        {to: '/demo', label: 'Demo', position: 'left'},
+        {href: '/react-datetime-picker/demo/', label: 'Demo', position: 'left'},
         {
           href: 'https://github.com/initbase/react-datetime-picker',
           label: 'GitHub',

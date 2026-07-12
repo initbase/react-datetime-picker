@@ -3,12 +3,13 @@
 ## Commands (run from root)
 
 | Command | What it does |
-|---|---|
+|---|---|---|
 | `npm run typecheck` | tsc --noEmit for all 3 workspaces |
 | `npm run build` | tsup CJS+ESM+dts + copies CSS to dist |
 | `npm run dev:demo` | vite dev server for demo app |
 | `npm run dev:docs` | docusaurus start |
 | `npm run publish:ui` | publishes packages/ui to npm |
+| `npm run deploy:build` | builds UI + docs + demo, copies demo into docs build for deployment |
 
 Order: `typecheck` before `build`.
 
