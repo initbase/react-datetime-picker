@@ -91,6 +91,27 @@ const code5 = `// Chinese locale with zh-CN
 <DatePicker locale="zh-CN" />
 <DateRangePicker locale="zh-CN" />`;
 
+const code6 = `// Dark mode via --rdp-* custom property overrides
+// Wrap the picker in a dark container
+<div style={{ background: "#1f2937", padding: 24, borderRadius: 10 }}>
+  <DatePicker
+    style={{
+      "--rdp-bg": "#1f2937",
+      "--rdp-text": "#f9fafb",
+      "--rdp-border": "#4b5563",
+      "--rdp-text-muted": "#9ca3af",
+      "--rdp-text-disabled": "#4b5563",
+      "--rdp-primary": "#3b82f6",
+      "--rdp-primary-hover": "#60a5fa",
+      "--rdp-primary-light": "#1e3a5f",
+      "--rdp-day-hover-bg": "#374151",
+      "--rdp-range-bg": "#1e3a5f",
+      "--rdp-outside-month": "#6b7280",
+      "--rdp-popover-shadow": "0 4px 16px rgba(0,0,0,0.4)",
+    } as React.CSSProperties}
+  />
+</div>`;
+
 function App() {
   const [date, setDate] = useState<Date | null>(null);
   const [time, setTime] = useState<Date | null>(null);
@@ -104,6 +125,7 @@ function App() {
   const [squaredDate, setSquaredDate] = useState<Date | null>(null);
   const [zhDate, setZhDate] = useState<Date | null>(null);
   const [zhRange, setZhRange] = useState<[Date | null, Date | null]>([null, null]);
+  const [darkDate, setDarkDate] = useState<Date | null>(null);
 
   return (
     <div style={{ maxWidth: 580, margin: "40px auto", fontFamily: "system-ui, sans-serif" }}>
@@ -130,6 +152,9 @@ function App() {
 
           <span className="demo-toc-group">Locale</span>
           <a href="#locale-zh">Chinese (zh-CN)</a>
+
+          <span className="demo-toc-group">Theme</span>
+          <a href="#dark-mode">Dark mode</a>
 
           <span className="demo-toc-group">Links</span>
           <a href="/">Docs</a>
@@ -317,6 +342,44 @@ function App() {
         <details style={{ marginTop: 12 }}>
           <summary style={{ cursor: "pointer", fontSize: 13, color: "#6b7280" }}>Show code</summary>
           <pre style={{ background: "#f3f4f6", padding: 12, borderRadius: 8, fontSize: 12, overflowX: "auto" }}><code>{code5}</code></pre>
+        </details>
+      </section>
+
+      <section id="dark-mode" style={{ marginBottom: 24 }}>
+        <h2>Theme — Dark Mode</h2>
+        <p style={{ fontSize: 13, color: "#6b7280", margin: "0 0 10px" }}>
+          Override <code style={{ background: "#f3f4f6", padding: "1px 5px", borderRadius: 4 }}>--rdp-*</code> custom properties via the <code style={{ background: "#f3f4f6", padding: "1px 5px", borderRadius: 4 }}>style</code> prop for dark backgrounds. Also works with <code style={{ background: "#f3f4f6", padding: "1px 5px", borderRadius: 4 }}>className</code> + CSS on an ancestor element.
+        </p>
+        <div
+          className="demo-dark-wrapper"
+          style={{
+            background: "#1f2937",
+            padding: "24px",
+            borderRadius: 10,
+          }}
+        >
+          <DatePicker
+            value={darkDate}
+            onChange={setDarkDate}
+            style={{
+              "--rdp-bg": "#1f2937",
+              "--rdp-text": "#f9fafb",
+              "--rdp-border": "#4b5563",
+              "--rdp-text-muted": "#9ca3af",
+              "--rdp-text-disabled": "#4b5563",
+              "--rdp-primary": "#3b82f6",
+              "--rdp-primary-hover": "#60a5fa",
+              "--rdp-primary-light": "#1e3a5f",
+              "--rdp-day-hover-bg": "#374151",
+              "--rdp-range-bg": "#1e3a5f",
+              "--rdp-outside-month": "#6b7280",
+              "--rdp-popover-shadow": "0 4px 16px rgba(0,0,0,0.4)",
+            } as React.CSSProperties}
+          />
+        </div>
+        <details style={{ marginTop: 12 }}>
+          <summary style={{ cursor: "pointer", fontSize: 13, color: "#6b7280" }}>Show code</summary>
+          <pre style={{ background: "#f3f4f6", padding: 12, borderRadius: 8, fontSize: 12, overflowX: "auto" }}><code>{code6}</code></pre>
         </details>
       </section>
     </div>
