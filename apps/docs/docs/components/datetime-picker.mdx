@@ -11,10 +11,12 @@ type DatePickerProps = {
   value?: Date | null;
   defaultValue?: Date | null;
   onChange?: (value: Date | null) => void;
-  locale?: string;           // default: "en-US"
+  locale?: string;              // default: "en-US"
   className?: string;
   style?: React.CSSProperties;
   placeholder?: string;
+  position?: "top" | "bottom" | "left" | "right" | "flexible"; // default: "flexible"
+  renderTrigger?: (props: SingleTriggerProps) => React.ReactNode;
   min?: Date;
   max?: Date;
 };
@@ -27,13 +29,15 @@ type TimePickerProps = {
   value?: Date | null;
   defaultValue?: Date | null;
   onChange?: (value: Date | null) => void;
-  locale?: string;           // default: "en-US"
+  locale?: string;              // default: "en-US"
   className?: string;
   style?: React.CSSProperties;
   placeholder?: string;
-  step?: number;             // minute interval, default: 1
+  position?: "top" | "bottom" | "left" | "right" | "flexible"; // default: "flexible"
+  renderTrigger?: (props: SingleTriggerProps) => React.ReactNode;
+  step?: number;                // minute interval, default: 1
   showSeconds?: boolean;
-  timeFormat?: "12h" | "24h"; // default: "24h"
+  timeFormat?: "12h" | "24h";   // default: "24h"
   min?: Date;
   max?: Date;
 };
@@ -43,8 +47,20 @@ type TimePickerProps = {
 
 ```tsx
 type DateTimePickerProps = {
-  // ... all DatePicker and TimePicker props (except placeholder)
+  value?: Date | null;
+  defaultValue?: Date | null;
+  onChange?: (value: Date | null) => void;
+  locale?: string;              // default: "en-US"
+  className?: string;
+  style?: React.CSSProperties;
   placeholder?: string;
+  position?: "top" | "bottom" | "left" | "right" | "flexible"; // default: "flexible"
+  renderTrigger?: (props: SingleTriggerProps) => React.ReactNode;
+  step?: number;                // minute interval, default: 1
+  showSeconds?: boolean;
+  timeFormat?: "12h" | "24h";   // default: "24h"
+  min?: Date;
+  max?: Date;
 };
 ```
 
@@ -59,6 +75,8 @@ type DateRangePickerProps = {
   className?: string;
   style?: React.CSSProperties;
   placeholder?: [string, string]; // [start placeholder, end placeholder]
+  position?: "top" | "bottom" | "left" | "right" | "flexible"; // default: "flexible"
+  renderTrigger?: (props: RangeTriggerProps) => React.ReactNode;
   min?: Date;
   max?: Date;
 };
@@ -75,6 +93,8 @@ type TimeRangePickerProps = {
   className?: string;
   style?: React.CSSProperties;
   placeholder?: [string, string];
+  position?: "top" | "bottom" | "left" | "right" | "flexible"; // default: "flexible"
+  renderTrigger?: (props: RangeTriggerProps) => React.ReactNode;
   step?: number;
   showSeconds?: boolean;
   timeFormat?: "12h" | "24h";
@@ -94,6 +114,8 @@ type DateTimeRangePickerProps = {
   className?: string;
   style?: React.CSSProperties;
   placeholder?: [string, string];
+  position?: "top" | "bottom" | "left" | "right" | "flexible"; // default: "flexible"
+  renderTrigger?: (props: RangeTriggerProps) => React.ReactNode;
   step?: number;
   showSeconds?: boolean;
   timeFormat?: "12h" | "24h";
