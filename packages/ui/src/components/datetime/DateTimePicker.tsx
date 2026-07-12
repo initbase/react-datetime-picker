@@ -15,6 +15,7 @@ export function DateTimePicker({
   className = "",
   style,
   placeholder = "Select date & time",
+  position,
   step = 1,
   showSeconds = false,
   timeFormat = "24h",
@@ -76,7 +77,7 @@ export function DateTimePicker({
       open={open}
       onClose={handleClose}
     >
-      <Popover open={open} onClose={handleClose} style={{ minWidth: 340 }}>
+      <Popover open={open} onClose={handleClose} style={{ minWidth: 340 }} position={position}>
         <div className="rdp-datetime-layout">
           <Calendar
             value={value}

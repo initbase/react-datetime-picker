@@ -13,6 +13,7 @@ export function TimeRangePicker({
   className = "",
   style,
   placeholder,
+  position,
   step = 1,
   showSeconds = false,
   timeFormat = "24h",
@@ -82,7 +83,7 @@ export function TimeRangePicker({
       open={open}
       onClose={() => setOpen(false)}
     >
-      <Popover open={open} onClose={() => setOpen(false)}>
+      <Popover open={open} onClose={() => setOpen(false)} position={position}>
         <div style={{ display: "flex", gap: 16 }}>
           <div className="rdp-datetime-range-panel">
             <div className="rdp-datetime-range-label">Start</div>

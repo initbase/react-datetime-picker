@@ -14,6 +14,7 @@ export function DatePicker({
   className = "",
   style,
   placeholder = "Select date",
+  position,
   min,
   max,
 }: DatePickerProps) {
@@ -38,7 +39,7 @@ export function DatePicker({
       open={open}
       onClose={() => setOpen(false)}
     >
-      <Popover open={open} onClose={() => setOpen(false)}>
+      <Popover open={open} onClose={() => setOpen(false)} position={position}>
         <Calendar
           value={value}
           onSelect={handleSelect}

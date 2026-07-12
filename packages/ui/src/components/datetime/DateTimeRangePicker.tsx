@@ -14,6 +14,7 @@ export function DateTimeRangePicker({
   className = "",
   style,
   placeholder,
+  position,
   step = 1,
   showSeconds = false,
   timeFormat = "24h",
@@ -112,7 +113,7 @@ export function DateTimeRangePicker({
       open={open}
       onClose={handleClose}
     >
-      <Popover open={open} onClose={handleClose} style={{ minWidth: 420 }}>
+      <Popover open={open} onClose={handleClose} style={{ minWidth: 420 }} position={position}>
         <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
           <Calendar
             value={pendingStart ?? currentRange[0]}

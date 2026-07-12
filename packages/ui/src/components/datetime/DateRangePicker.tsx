@@ -13,6 +13,7 @@ export function DateRangePicker({
   className = "",
   style,
   placeholder,
+  position,
   min,
   max,
 }: DateRangePickerProps) {
@@ -79,7 +80,7 @@ export function DateRangePicker({
       open={open}
       onClose={handleClose}
     >
-      <Popover open={open} onClose={handleClose}>
+      <Popover open={open} onClose={handleClose} position={position}>
         <Calendar
           value={pendingStart ?? currentRange[0]}
           highlightRange={highlightRange}

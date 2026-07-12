@@ -2,6 +2,7 @@ import React from "react";
 
 export type DateValue = Date | null;
 export type DateRangeValue = [Date, Date] | [Date, null] | [null, Date] | [null, null];
+export type PopoverPosition = "top" | "bottom" | "left" | "right" | "flexible";
 
 export interface BasePickerProps {
   value?: DateValue;
@@ -11,6 +12,7 @@ export interface BasePickerProps {
   className?: string;
   style?: React.CSSProperties;
   placeholder?: string;
+  position?: PopoverPosition;
 }
 
 export interface BaseRangePickerProps {
@@ -21,6 +23,7 @@ export interface BaseRangePickerProps {
   className?: string;
   style?: React.CSSProperties;
   placeholder?: [string, string];
+  position?: PopoverPosition;
 }
 
 export interface DatePickerProps extends BasePickerProps {

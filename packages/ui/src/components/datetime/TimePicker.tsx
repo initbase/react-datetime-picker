@@ -14,6 +14,7 @@ export function TimePicker({
   className = "",
   style,
   placeholder = "Select time",
+  position,
   step = 1,
   showSeconds = false,
   timeFormat = "24h",
@@ -65,7 +66,7 @@ export function TimePicker({
       open={open}
       onClose={() => setOpen(false)}
     >
-      <Popover open={open} onClose={() => setOpen(false)}>
+      <Popover open={open} onClose={() => setOpen(false)} position={position}>
         <div className="rdp-time-picker">
           <TimeColumn
             count={24}

@@ -16,4 +16,5 @@ export type {
   DateTimeRangePickerProps,
   DateValue,
   DateRangeValue,
+  PopoverPosition,
 } from "./components/datetime";

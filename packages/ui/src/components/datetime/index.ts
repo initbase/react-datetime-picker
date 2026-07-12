@@ -14,4 +14,5 @@ export type {
   DateTimeRangePickerProps,
   DateValue,
   DateRangeValue,
+  PopoverPosition,
 } from "./types";
