@@ -1,0 +1,192 @@
+# @initbase/react-datetime-picker
+
+> A lightweight, zero-dependency date and time picker library for React 18+.
+
+## Quick links
+
+- Docs: https://initbase.github.io/react-datetime-picker/docs/intro
+- Demo: https://initbase.github.io/react-datetime-picker/demo
+- GitHub: https://github.com/initbase/react-datetime-picker
+- NPM: https://www.npmjs.com/package/@initbase/react-datetime-picker
+- Support: https://ko-fi.com/burhanahmeed
+
+## Key features
+
+- Zero dependencies — all date logic uses plain `Date` + `Intl.DateTimeFormat`
+- Controlled and uncontrolled modes (similar to `<input>` pattern)
+- Single date, time, date+time, and range variants
+- 12h/24h time format, seconds support, configurable minute/second steps
+- CSS custom properties for easy theming (prefix `--rdp-*`)
+- Flexible popover positioning with viewport-aware flipping
+- Full TypeScript types
+
+## Install & peer dependencies
+
+```bash
+npm install @initbase/react-datetime-picker
+```
+
+Requires `react >= 18` and `react-dom >= 18`.
+
+## Import
+
+```tsx
+// Components
+import { DatePicker, TimePicker, DateTimePicker, DateRangePicker, TimeRangePicker, DateTimeRangePicker } from '@initbase/react-datetime-picker';
+
+// Styles (must be imported separately)
+import '@initbase/react-datetime-picker/datetime-picker.css';
+```
+
+## Basic usage
+
+### DatePicker
+
+```tsx
+import { useState } from 'react';
+import { DatePicker } from '@initbase/react-datetime-picker';
+
+function Example() {
+  const [value, setValue] = useState<Date | null>(null);
+  return (
+    <DatePicker value={value} onChange={setValue} placeholder="Pick a date" />
+  );
+}
+```
+
+### DateRangePicker
+
+```tsx
+import { useState } from 'react';
+import { DateRangePicker } from '@initbase/react-datetime-picker';
+
+function Example() {
+  const [value, setValue] = useState<[Date | null, Date | null]>([null, null]);
+  return (
+    <DateRangePicker value={value} onChange={setValue} placeholder="Pick a range" />
+  );
+}
+```
+
+### TimePicker
+
+```tsx
+import { useState } from 'react';
+import { TimePicker } from '@initbase/react-datetime-picker';
+
+function Example() {
+  const [value, setValue] = useState<Date | null>(null);
+  return (
+    <TimePicker value={value} onChange={setValue} />
+  );
+}
+```
+
+### DateTimePicker
+
+```tsx
+import { useState } from 'react';
+import { DateTimePicker } from '@initbase/react-datetime-picker';
+
+function Example() {
+  const [value, setValue] = useState<Date | null>(null);
+  return (
+    <DateTimePicker value={value} onChange={setValue} />
+  );
+}
+```
+
+### TimeRangePicker
+
+```tsx
+import { useState } from 'react';
+import { TimeRangePicker } from '@initbase/react-datetime-picker';
+
+function Example() {
+  const [value, setValue] = useState<[Date | null, Date | null]>([null, null]);
+  return (
+    <TimeRangePicker value={value} onChange={setValue} />
+  );
+}
+```
+
+### DateTimeRangePicker
+
+```tsx
+import { useState } from 'react';
+import { DateTimeRangePicker } from '@initbase/react-datetime-picker';
+
+function Example() {
+  const [value, setValue] = useState<[Date | null, Date | null]>([null, null]);
+  return (
+    <DateTimeRangePicker value={value} onChange={setValue} />
+  );
+}
+```
+
+## Common props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `Date \| null` / `[Date\|null, Date\|null]` | — | Controlled value |
+| `onChange` | `(value) => void` | — | Change handler |
+| `placeholder` | `string` | — | Placeholder text |
+| `position` | `'bottom' \| 'top' \| 'flexible'` | `'flexible'` | Popover position |
+| `step` | `number` | `1` | Minute/second step intervals |
+| `use12h` | `boolean` | `false` | 12-hour format |
+| `showSeconds` | `boolean` | `false` | Show seconds column |
+| `className` | `string` | — | Additional CSS class |
+| `style` | `React.CSSProperties` | — | Inline styles |
+
+## Value types
+
+```typescript
+type DateValue = Date | null;
+type DateRangeValue = [Date | null, Date | null];
+```
+
+## Theming
+
+Customize via CSS custom properties on `.rdp-wrapper`:
+
+```
+--rdp-primary: #4f46e5;
+--rdp-primary-hover: #4338ca;
+--rdp-text: #111827;
+--rdp-text-muted: #9ca3af;
+--rdp-border: #e5e7eb;
+--rdp-border-radius: 8px;
+--rdp-font-size: 14px;
+--rdp-cell-size: 36px;
+```
+
+All class names are prefixed with `rdp-`. Apply CSS custom properties inline or in a stylesheet targeting `.rdp-wrapper`.
+
+### Example: green theme
+
+```tsx
+<DatePicker
+  value={value}
+  onChange={setValue}
+  style={{
+    '--rdp-primary': '#16a34a',
+    '--rdp-primary-hover': '#15803d',
+  } as React.CSSProperties}
+/>
+```
+
+## Popover position
+
+The `position` prop accepts `'bottom'`, `'top'`, or `'flexible'` (default). When `'flexible'`, the popover flips to the top if it would overflow the viewport at the bottom.
+
+## Range selection
+
+Range pickers use a two-click interaction model. The first click sets the start date, the second sets the end date. Hovering during the second click highlights the potential range.
+
+## Uncontrolled usage
+
+All pickers work uncontrolled by omitting `value` and just providing `onChange`:
+
+```tsx
+<DatePicker onChange={(v) => console.log(v)} placeholder="Pick a date" />
+```
