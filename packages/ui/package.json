@@ -1,6 +1,6 @@
 {
   "name": "@initbase/react-datetime-picker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "description": "React date time picker components — date, time, datetime, and range variants",
   "main": "dist/index.cjs",
