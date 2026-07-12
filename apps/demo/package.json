@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@initbase/react-datetime-picker": "0.0.0",
+    "@initbase/react-datetime-picker": "*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
