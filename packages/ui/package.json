@@ -32,6 +32,25 @@
     "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/initbase/react-datetime-picker"
+  },
+  "homepage": "https://initbase.github.io/react-datetime-picker/",
+  "keywords": [
+    "react",
+    "datetime",
+    "datepicker",
+    "timepicker",
+    "datetime-picker",
+    "date-range",
+    "time-range",
+    "calendar",
+    "picker",
+    "date",
+    "time",
+    "component"
+  ],
   "publishConfig": {
     "access": "public"
   }
