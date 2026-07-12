@@ -1,0 +1,103 @@
+---
+sidebar_position: 2
+---
+
+# API Reference
+
+## DatePicker
+
+```tsx
+type DatePickerProps = {
+  value?: Date | null;
+  defaultValue?: Date | null;
+  onChange?: (value: Date | null) => void;
+  locale?: string;           // default: "en-US"
+  className?: string;
+  style?: React.CSSProperties;
+  placeholder?: string;
+  min?: Date;
+  max?: Date;
+};
+```
+
+## TimePicker
+
+```tsx
+type TimePickerProps = {
+  value?: Date | null;
+  defaultValue?: Date | null;
+  onChange?: (value: Date | null) => void;
+  locale?: string;           // default: "en-US"
+  className?: string;
+  style?: React.CSSProperties;
+  placeholder?: string;
+  step?: number;             // minute interval, default: 1
+  showSeconds?: boolean;
+  timeFormat?: "12h" | "24h"; // default: "24h"
+  min?: Date;
+  max?: Date;
+};
+```
+
+## DateTimePicker
+
+```tsx
+type DateTimePickerProps = {
+  // ... all DatePicker and TimePicker props (except placeholder)
+  placeholder?: string;
+};
+```
+
+## DateRangePicker
+
+```tsx
+type DateRangePickerProps = {
+  value?: [Date | null, Date | null];
+  defaultValue?: [Date | null, Date | null];
+  onChange?: (value: [Date | null, Date | null]) => void;
+  locale?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  placeholder?: [string, string]; // [start placeholder, end placeholder]
+  min?: Date;
+  max?: Date;
+};
+```
+
+## TimeRangePicker
+
+```tsx
+type TimeRangePickerProps = {
+  value?: [Date | null, Date | null];
+  defaultValue?: [Date | null, Date | null];
+  onChange?: (value: [Date | null, Date | null]) => void;
+  locale?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  placeholder?: [string, string];
+  step?: number;
+  showSeconds?: boolean;
+  timeFormat?: "12h" | "24h";
+  min?: Date;
+  max?: Date;
+};
+```
+
+## DateTimeRangePicker
+
+```tsx
+type DateTimeRangePickerProps = {
+  value?: [Date | null, Date | null];
+  defaultValue?: [Date | null, Date | null];
+  onChange?: (value: [Date | null, Date | null]) => void;
+  locale?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  placeholder?: [string, string];
+  step?: number;
+  showSeconds?: boolean;
+  timeFormat?: "12h" | "24h";
+  min?: Date;
+  max?: Date;
+};
+```

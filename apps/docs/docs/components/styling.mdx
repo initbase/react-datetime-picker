@@ -1,0 +1,52 @@
+---
+sidebar_position: 3
+---
+
+# Styling
+
+All components use BEM-prefixed CSS classes (`rdp-*`) and expose CSS custom properties for theming.
+
+## CSS Custom Properties
+
+| Property | Default | Description |
+|---|---|---|
+| `--rdp-font-family` | `system-ui, sans-serif` | Font family |
+| `--rdp-font-size` | `14px` | Base font size |
+| `--rdp-primary` | `#2563eb` | Selected/highlight color |
+| `--rdp-primary-hover` | `#1d4ed8` | Hover variant |
+| `--rdp-primary-light` | `#dbeafe` | Light variant for range bg |
+| `--rdp-bg` | `#ffffff` | Background |
+| `--rdp-border` | `#d1d5db` | Border color |
+| `--rdp-border-radius` | `8px` | Border radius |
+| `--rdp-text` | `#111827` | Text color |
+| `--rdp-text-muted` | `#6b7280` | Muted text |
+| `--rdp-cell-size` | `36px` | Calendar cell size |
+| `--rdp-popover-shadow` | `0 4px 16px rgba(0,0,0,0.12)` | Popover shadow |
+| `--rdp-time-column-height` | `200px` | Time column scroll height |
+
+## Overriding with CSS
+
+```css
+.rdp-wrapper {
+  --rdp-primary: #059669;
+  --rdp-primary-hover: #047857;
+  --rdp-primary-light: #d1fae5;
+  --rdp-border-radius: 12px;
+}
+```
+
+## Overriding with Tailwind
+
+Pass `className` to any component and Tailwind classes override default styles due to higher specificity:
+
+```tsx
+<DatePicker className="[&_.rdp-trigger]:rounded-xl [&_.rdp-trigger]:shadow-sm" />
+```
+
+## Inline Styles
+
+The `style` prop is merged into the root wrapper, allowing per-instance overrides:
+
+```tsx
+<DatePicker style={{ width: 320 }} />
+```

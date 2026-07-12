@@ -1,0 +1,352 @@
+.rdp-wrapper {
+  --rdp-font-family: system-ui, -apple-system, sans-serif;
+  --rdp-font-size: 14px;
+  --rdp-primary: #2563eb;
+  --rdp-primary-hover: #1d4ed8;
+  --rdp-primary-light: #dbeafe;
+  --rdp-bg: #ffffff;
+  --rdp-border: #d1d5db;
+  --rdp-border-radius: 8px;
+  --rdp-text: #111827;
+  --rdp-text-muted: #6b7280;
+  --rdp-text-disabled: #d1d5db;
+  --rdp-cell-size: 36px;
+  --rdp-day-hover-bg: #f3f4f6;
+  --rdp-range-bg: #dbeafe;
+  --rdp-today-border: #2563eb;
+  --rdp-outside-month: #9ca3af;
+  --rdp-popover-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --rdp-popover-z-index: 1000;
+  --rdp-time-column-height: 200px;
+  --rdp-time-item-height: 32px;
+  --rdp-transition: 150ms ease;
+
+  position: relative;
+  display: inline-block;
+  font-family: var(--rdp-font-family);
+  font-size: var(--rdp-font-size);
+}
+
+.rdp-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 10px;
+  font-size: var(--rdp-font-size);
+  font-family: var(--rdp-font-family);
+  color: var(--rdp-text);
+  background: var(--rdp-bg);
+  border: 1px solid var(--rdp-border);
+  border-radius: var(--rdp-border-radius);
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--rdp-transition), box-shadow var(--rdp-transition);
+  box-sizing: border-box;
+}
+
+.rdp-trigger:focus {
+  border-color: var(--rdp-primary);
+  box-shadow: 0 0 0 2px var(--rdp-primary-light);
+}
+
+.rdp-trigger::placeholder {
+  color: var(--rdp-text-muted);
+}
+
+.rdp-trigger-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--rdp-text-muted);
+  flex-shrink: 0;
+}
+
+.rdp-trigger--range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rdp-trigger--range input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+.rdp-trigger--range input::placeholder {
+  color: var(--rdp-text-muted);
+}
+
+.rdp-trigger-range-separator {
+  color: var(--rdp-text-muted);
+  flex-shrink: 0;
+}
+
+.rdp-popover {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: var(--rdp-popover-z-index);
+  background: var(--rdp-bg);
+  border: 1px solid var(--rdp-border);
+  border-radius: var(--rdp-border-radius);
+  box-shadow: var(--rdp-popover-shadow);
+  padding: 12px;
+  min-width: 260px;
+  box-sizing: border-box;
+}
+
+.rdp-calendar {
+  user-select: none;
+}
+
+.rdp-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.rdp-calendar-month-year {
+  font-weight: 600;
+  font-size: var(--rdp-font-size);
+  color: var(--rdp-text);
+  text-align: center;
+  flex: 1;
+}
+
+.rdp-calendar-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--rdp-text-muted);
+  cursor: pointer;
+  transition: background var(--rdp-transition), color var(--rdp-transition);
+  padding: 0;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.rdp-calendar-nav-btn:hover {
+  background: var(--rdp-day-hover-bg);
+  color: var(--rdp-text);
+}
+
+.rdp-calendar-nav-btn:disabled {
+  color: var(--rdp-text-disabled);
+  cursor: default;
+}
+
+.rdp-calendar-nav-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.rdp-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, var(--rdp-cell-size));
+  gap: 2px;
+}
+
+.rdp-calendar-weekday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--rdp-cell-size);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--rdp-text-muted);
+}
+
+.rdp-calendar-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--rdp-cell-size);
+  height: var(--rdp-cell-size);
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--rdp-text);
+  font-size: 13px;
+  font-family: var(--rdp-font-family);
+  cursor: pointer;
+  transition: background var(--rdp-transition), color var(--rdp-transition);
+  position: relative;
+  padding: 0;
+}
+
+.rdp-calendar-day:hover:not(:disabled):not(.rdp-calendar-day--selected):not(.rdp-calendar-day--range-start):not(.rdp-calendar-day--range-end) {
+  background: var(--rdp-day-hover-bg);
+}
+
+.rdp-calendar-day--outside {
+  color: var(--rdp-outside-month);
+}
+
+.rdp-calendar-day--today:not(.rdp-calendar-day--selected):not(.rdp-calendar-day--range-start):not(.rdp-calendar-day--range-end) {
+  color: var(--rdp-primary);
+  font-weight: 600;
+}
+
+.rdp-calendar-day--selected,
+.rdp-calendar-day--range-start,
+.rdp-calendar-day--range-end {
+  background: var(--rdp-primary);
+  color: #ffffff;
+}
+
+.rdp-calendar-day--selected:hover,
+.rdp-calendar-day--range-start:hover,
+.rdp-calendar-day--range-end:hover {
+  background: var(--rdp-primary-hover);
+}
+
+.rdp-calendar-day--in-range {
+  background: var(--rdp-range-bg);
+  border-radius: 0;
+  color: var(--rdp-primary);
+  font-weight: 500;
+}
+
+.rdp-calendar-day--range-start {
+  border-radius: 50% 0 0 50%;
+}
+
+.rdp-calendar-day--range-end {
+  border-radius: 0 50% 50% 0;
+}
+
+.rdp-calendar-day--range-start.rdp-calendar-day--range-end {
+  border-radius: 50%;
+}
+
+.rdp-calendar-day:disabled {
+  color: var(--rdp-text-disabled);
+  cursor: default;
+}
+
+.rdp-calendar-day:disabled:hover {
+  background: transparent;
+}
+
+.rdp-time-picker {
+  display: flex;
+  gap: 4px;
+}
+
+.rdp-time-column {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: var(--rdp-time-column-height);
+  border: 1px solid var(--rdp-border);
+  border-radius: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rdp-border) transparent;
+}
+
+.rdp-time-column::-webkit-scrollbar {
+  width: 4px;
+}
+
+.rdp-time-column::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.rdp-time-column::-webkit-scrollbar-thumb {
+  background: var(--rdp-border);
+  border-radius: 2px;
+}
+
+.rdp-time-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--rdp-time-item-height);
+  padding: 0 12px;
+  font-size: 13px;
+  font-family: var(--rdp-font-family);
+  color: var(--rdp-text);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: background var(--rdp-transition);
+  min-width: 44px;
+  flex-shrink: 0;
+}
+
+.rdp-time-item:hover {
+  background: var(--rdp-day-hover-bg);
+}
+
+.rdp-time-item--selected {
+  background: var(--rdp-primary-light);
+  color: var(--rdp-primary);
+  font-weight: 600;
+}
+
+.rdp-time-item--selected:hover {
+  background: var(--rdp-primary-light);
+}
+
+.rdp-time-item:disabled {
+  color: var(--rdp-text-disabled);
+  cursor: default;
+}
+
+.rdp-time-item:disabled:hover {
+  background: transparent;
+}
+
+.rdp-time-label {
+  font-size: 11px;
+  color: var(--rdp-text-muted);
+  text-align: center;
+  padding: 2px 0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.rdp-datetime-layout {
+  display: flex;
+  gap: 16px;
+}
+
+.rdp-datetime-layout .rdp-calendar {
+  flex-shrink: 0;
+}
+
+.rdp-datetime-range-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rdp-datetime-range-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--rdp-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 600px) {
+  .rdp-datetime-layout {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

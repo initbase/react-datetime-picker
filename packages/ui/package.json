@@ -1,23 +1,24 @@
 {
-  "name": "@myorg/ui",
+  "name": "@initbase/react-datetime-picker",
   "version": "0.0.0",
   "private": false,
-  "description": "React component library",
+  "description": "React date time picker components — date, time, datetime, and range variants",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
-    }
+      "require": "./dist/index.cjs"
+    },
+    "./datetime-picker.css": "./dist/datetime-picker.css"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format cjs,esm --dts --sourcemap",
+    "build": "tsup src/index.tsx --format cjs,esm --dts --sourcemap && cp src/components/datetime/datetime-picker.css dist/datetime-picker.css",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build"
   },
