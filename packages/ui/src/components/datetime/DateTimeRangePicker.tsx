@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { Popover } from "./Popover";
 import { Calendar } from "./Calendar";
 import { TimeColumn } from "./TimeColumn";
 import { RangeInputTrigger } from "./InputTrigger";
-import { clampDate, formatDateTimeValue } from "./utils";
+import { clampDate, formatDateTimeValue, getAMPeriodLabels } from "./utils";
 import type { DateTimeRangePickerProps, DateRangeValue } from "./types";
 
 export function DateTimeRangePicker({
@@ -96,10 +96,12 @@ export function DateTimeRangePicker({
   const start = getStart();
   const end = getEnd();
 
+  const [amLabel, pmLabel] = useMemo(() => getAMPeriodLabels(locale), [locale]);
+
   const formatHour = (h: number) => {
     if (timeFormat === "12h") {
       const display = h === 0 ? 12 : h > 12 ? h - 12 : h;
-      return `${display} ${h < 12 ? "AM" : "PM"}`;
+      return `${display} ${h < 12 ? amLabel : pmLabel}`;
     }
     return String(h).padStart(2, "0");
   };
@@ -124,6 +126,7 @@ export function DateTimeRangePicker({
             onSelect={handleDateSelect}
             min={min}
             max={max}
+            locale={locale}
             defaultMonth={currentRange[0] ?? pendingStart ?? undefined}
           />
           {!pendingStart && currentRange[0] && currentRange[1] && (

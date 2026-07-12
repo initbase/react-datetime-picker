@@ -90,6 +90,7 @@ export function DateRangePicker({
           onSelect={handleSelect}
           min={min}
           max={max}
+          locale={locale}
           defaultMonth={currentRange[0] ?? pendingStart ?? undefined}
         />
       </Popover>

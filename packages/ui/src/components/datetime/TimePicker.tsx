@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Popover } from "./Popover";
 import { TimeColumn } from "./TimeColumn";
 import { InputTrigger } from "./InputTrigger";
 import { useControlled } from "./hooks";
-import { formatTimeValue, isTimeDisabled, clampDate } from "./utils";
+import { formatTimeValue, isTimeDisabled, clampDate, getAMPeriodLabels } from "./utils";
 import type { TimePickerProps, DateValue } from "./types";
 
 export function TimePicker({
@@ -49,10 +49,12 @@ export function TimePicker({
   const displayValue = value ? formatTimeValue(value, locale, showSeconds) : "";
   const current = value ?? new Date();
 
+  const [amLabel, pmLabel] = useMemo(() => getAMPeriodLabels(locale), [locale]);
+
   const formatHour = (h: number) => {
     if (timeFormat === "12h") {
       const display = h === 0 ? 12 : h > 12 ? h - 12 : h;
-      return `${display} ${h < 12 ? "AM" : "PM"}`;
+      return `${display} ${h < 12 ? amLabel : pmLabel}`;
     }
     return String(h).padStart(2, "0");
   };

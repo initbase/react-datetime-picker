@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Popover } from "./Popover";
 import { TimeColumn } from "./TimeColumn";
 import { RangeInputTrigger } from "./InputTrigger";
-import { formatTimeValue, clampDate } from "./utils";
+import { formatTimeValue, clampDate, getAMPeriodLabels } from "./utils";
 import type { TimeRangePickerProps, DateRangeValue } from "./types";
 
 export function TimeRangePicker({
@@ -66,10 +66,12 @@ export function TimeRangePicker({
   const start = getStart();
   const end = getEnd();
 
+  const [amLabel, pmLabel] = useMemo(() => getAMPeriodLabels(locale), [locale]);
+
   const formatHour = (h: number) => {
     if (timeFormat === "12h") {
       const display = h === 0 ? 12 : h > 12 ? h - 12 : h;
-      return `${display} ${h < 12 ? "AM" : "PM"}`;
+      return `${display} ${h < 12 ? amLabel : pmLabel}`;
     }
     return String(h).padStart(2, "0");
   };

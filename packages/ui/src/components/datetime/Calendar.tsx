@@ -7,8 +7,8 @@ import {
   isSameMonth,
   isInRange,
   isDateDisabled,
-  WEEKDAY_LABELS,
-  MONTH_LABELS,
+  getWeekdayLabels,
+  getMonthLabel,
 } from "./utils";
 import type { DateRangeValue } from "./types";
 
@@ -23,6 +23,7 @@ interface CalendarProps {
   max?: Date;
   className?: string;
   style?: React.CSSProperties;
+  locale?: string;
 }
 
 export function Calendar({
@@ -36,6 +37,7 @@ export function Calendar({
   max,
   className = "",
   style,
+  locale = "en-US",
 }: CalendarProps) {
   const [internalMonth, setInternalMonth] = useState(
     () => defaultMonth ?? value ?? new Date()
@@ -82,7 +84,7 @@ export function Calendar({
           <ChevronLeft />
         </IconButton>
         <span className="rdp-calendar-month-year">
-          {MONTH_LABELS[month.getMonth()]} {month.getFullYear()}
+          {getMonthLabel(month, locale)} {month.getFullYear()}
         </span>
         <IconButton
           onClick={goToNextMonth}
@@ -95,7 +97,7 @@ export function Calendar({
       </div>
 
       <div className="rdp-calendar-grid">
-        {WEEKDAY_LABELS.map((label) => (
+        {getWeekdayLabels(locale).map((label) => (
           <div key={label} className="rdp-calendar-weekday">
             {label}
           </div>
@@ -133,7 +135,7 @@ export function Calendar({
                 className={cls}
                 disabled={disabled}
                 onClick={() => onSelect(day)}
-                aria-label={day.toLocaleDateString()}
+                aria-label={day.toLocaleDateString(locale)}
               >
                 {day.getDate()}
               </button>

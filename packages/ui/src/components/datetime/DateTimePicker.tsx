@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Popover } from "./Popover";
 import { Calendar } from "./Calendar";
 import { TimeColumn } from "./TimeColumn";
 import { InputTrigger } from "./InputTrigger";
 import { useControlled } from "./hooks";
-import { clampDate, formatDateTimeValue } from "./utils";
+import { clampDate, formatDateTimeValue, getAMPeriodLabels } from "./utils";
 import type { DateTimePickerProps, DateValue } from "./types";
 
 export function DateTimePicker({
@@ -60,10 +60,12 @@ export function DateTimePicker({
   const displayValue = value ? formatDateTimeValue(value, locale, showSeconds) : "";
   const current = value ?? new Date();
 
+  const [amLabel, pmLabel] = useMemo(() => getAMPeriodLabels(locale), [locale]);
+
   const formatHour = (h: number) => {
     if (timeFormat === "12h") {
       const display = h === 0 ? 12 : h > 12 ? h - 12 : h;
-      return `${display} ${h < 12 ? "AM" : "PM"}`;
+      return `${display} ${h < 12 ? amLabel : pmLabel}`;
     }
     return String(h).padStart(2, "0");
   };
@@ -87,6 +89,7 @@ export function DateTimePicker({
             onSelect={handleDateSelect}
             min={min}
             max={max}
+            locale={locale}
             defaultMonth={value ?? undefined}
           />
           <div className="rdp-time-picker">

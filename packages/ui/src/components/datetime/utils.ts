@@ -120,12 +120,33 @@ export function isTimeDisabled(
   return false;
 }
 
-export const WEEKDAY_LABELS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+export const REFERENCE_SUNDAY = new Date(2023, 0, 1); // Jan 1, 2023 is a Sunday
 
-export const MONTH_LABELS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
-];
+export function getWeekdayLabels(locale: string = "en-US"): string[] {
+  const labels: string[] = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(REFERENCE_SUNDAY);
+    d.setDate(d.getDate() + i);
+    labels.push(d.toLocaleDateString(locale, { weekday: "short" }));
+  }
+  return labels;
+}
+
+export function getMonthLabel(date: Date, locale: string = "en-US"): string {
+  return date.toLocaleDateString(locale, { month: "long" });
+}
+
+export function getAMPeriodLabels(locale: string = "en-US"): [string, string] {
+  const format = new Intl.DateTimeFormat(locale, {
+    hour: "numeric",
+    hour12: true,
+  });
+  const amParts = format.formatToParts(new Date(2020, 0, 1, 9, 0, 0));
+  const pmParts = format.formatToParts(new Date(2020, 0, 1, 21, 0, 0));
+  const amLabel = amParts.find((p) => p.type === "dayPeriod")?.value ?? "AM";
+  const pmLabel = pmParts.find((p) => p.type === "dayPeriod")?.value ?? "PM";
+  return [amLabel, pmLabel];
+}
 
 export function generateTimeItems(count: number, step: number = 1): string[] {
   const items: string[] = [];

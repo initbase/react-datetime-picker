@@ -48,6 +48,7 @@ export function DatePicker({
           onSelect={handleSelect}
           min={min}
           max={max}
+          locale={locale}
           defaultMonth={value ?? undefined}
         />
       </Popover>
