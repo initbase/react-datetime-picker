@@ -20,6 +20,7 @@ export function TimePicker({
   timeFormat = "24h",
   min,
   max,
+  renderTrigger,
 }: TimePickerProps) {
   const [value, setValue] = useControlled<DateValue>(controlledValue, defaultValue ?? null, onChange);
   const [open, setOpen] = useState(false);
@@ -58,6 +59,7 @@ export function TimePicker({
 
   return (
     <InputTrigger
+      value={value}
       displayValue={displayValue}
       placeholder={placeholder}
       className={className}
@@ -65,6 +67,7 @@ export function TimePicker({
       onClick={() => setOpen((o) => !o)}
       open={open}
       onClose={() => setOpen(false)}
+      renderTrigger={renderTrigger}
     >
       <Popover open={open} onClose={() => setOpen(false)} position={position}>
         <div className="rdp-time-picker">

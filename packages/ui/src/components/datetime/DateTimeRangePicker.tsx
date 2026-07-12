@@ -20,6 +20,7 @@ export function DateTimeRangePicker({
   timeFormat = "24h",
   min,
   max,
+  renderTrigger,
 }: DateTimeRangePickerProps) {
   const [range, setRange] = useState<DateRangeValue>(
     controlledValue ?? defaultValue ?? [null, null]
@@ -105,6 +106,7 @@ export function DateTimeRangePicker({
 
   return (
     <RangeInputTrigger
+      value={currentRange}
       displayValues={displayValues}
       placeholder={placeholder ?? ["Start date & time", "End date & time"]}
       className={className}
@@ -112,6 +114,7 @@ export function DateTimeRangePicker({
       onClick={() => setOpen((o) => !o)}
       open={open}
       onClose={handleClose}
+      renderTrigger={renderTrigger}
     >
       <Popover open={open} onClose={handleClose} position={position} style={{ width: "max-content" }}>
         <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>

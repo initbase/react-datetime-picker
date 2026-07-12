@@ -4,6 +4,24 @@ export type DateValue = Date | null;
 export type DateRangeValue = [Date, Date] | [Date, null] | [null, Date] | [null, null];
 export type PopoverPosition = "top" | "bottom" | "left" | "right" | "flexible";
 
+export interface SingleTriggerProps {
+  value: DateValue;
+  displayValue: string;
+  placeholder?: string;
+  onClick: () => void;
+  open: boolean;
+  onClose: () => void;
+}
+
+export interface RangeTriggerProps {
+  value: DateRangeValue;
+  displayValues: [string, string];
+  placeholder?: [string, string];
+  onClick: () => void;
+  open: boolean;
+  onClose: () => void;
+}
+
 export interface BasePickerProps {
   value?: DateValue;
   onChange?: (value: DateValue) => void;
@@ -13,6 +31,7 @@ export interface BasePickerProps {
   style?: React.CSSProperties;
   placeholder?: string;
   position?: PopoverPosition;
+  renderTrigger?: (props: SingleTriggerProps) => React.ReactNode;
 }
 
 export interface BaseRangePickerProps {
@@ -24,6 +43,7 @@ export interface BaseRangePickerProps {
   style?: React.CSSProperties;
   placeholder?: [string, string];
   position?: PopoverPosition;
+  renderTrigger?: (props: RangeTriggerProps) => React.ReactNode;
 }
 
 export interface DatePickerProps extends BasePickerProps {

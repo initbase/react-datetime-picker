@@ -19,6 +19,7 @@ export function TimeRangePicker({
   timeFormat = "24h",
   min,
   max,
+  renderTrigger,
 }: TimeRangePickerProps) {
   const [range, setRange] = useState<DateRangeValue>(
     controlledValue ?? defaultValue ?? [null, null]
@@ -75,6 +76,7 @@ export function TimeRangePicker({
 
   return (
     <RangeInputTrigger
+      value={currentRange}
       displayValues={displayValues}
       placeholder={placeholder ?? ["Start time", "End time"]}
       className={className}
@@ -82,6 +84,7 @@ export function TimeRangePicker({
       onClick={() => setOpen((o) => !o)}
       open={open}
       onClose={() => setOpen(false)}
+      renderTrigger={renderTrigger}
     >
       <Popover open={open} onClose={() => setOpen(false)} position={position}>
         <div style={{ display: "flex", gap: 16 }}>

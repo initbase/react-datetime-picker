@@ -17,4 +17,6 @@ export type {
   DateValue,
   DateRangeValue,
   PopoverPosition,
+  SingleTriggerProps,
+  RangeTriggerProps,
 } from "./components/datetime";

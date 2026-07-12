@@ -101,3 +101,93 @@ type DateTimeRangePickerProps = {
   max?: Date;
 };
 ```
+
+## Custom Trigger
+
+Every picker accepts a `renderTrigger` prop — a render function that replaces the default trigger button with your own component. This gives you full control over styling and display format without affecting the popover, calendar, or picker logic.
+
+### Single Pickers
+
+For `DatePicker`, `TimePicker`, and `DateTimePicker` the render prop receives:
+
+```tsx
+type SingleTriggerProps = {
+  value: Date | null;       // raw Date — format however you like
+  displayValue: string;     // pre-formatted string (default format)
+  placeholder?: string;
+  onClick: () => void;      // toggle the popover
+  open: boolean;            // is the popover open?
+  onClose: () => void;
+};
+```
+
+**With default format (quick):**
+
+```tsx
+<DatePicker
+  renderTrigger={({ onClick, displayValue, placeholder }) => (
+    <button onClick={onClick}>
+      {displayValue || placeholder || "Select"}
+    </button>
+  )}
+/>
+```
+
+**With custom format (using `value`):**
+
+```tsx
+<DatePicker
+  renderTrigger={({ onClick, value, open }) => (
+    <button
+      onClick={onClick}
+      style={{
+        background: open ? "#e0e7ff" : "#fff",
+        border: "2px solid #6366f1",
+        borderRadius: 8,
+        cursor: "pointer",
+        width: "100%",
+      }}
+    >
+      {value
+        ? value.toLocaleDateString("en-US", {
+            weekday: "short",
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          })
+        : "Choose a date"}
+    </button>
+  )}
+/>
+```
+
+### Range Pickers
+
+For `DateRangePicker`, `TimeRangePicker`, and `DateTimeRangePicker` the render prop receives:
+
+```tsx
+type RangeTriggerProps = {
+  value: [Date | null, Date | null];  // raw dates
+  displayValues: [string, string];    // pre-formatted strings
+  placeholder?: [string, string];
+  onClick: () => void;
+  open: boolean;
+  onClose: () => void;
+};
+```
+
+**Example with custom display:**
+
+```tsx
+<DateRangePicker
+  renderTrigger={({ onClick, value }) => (
+    <div onClick={onClick} className="range-chip">
+      <span>{value[0]?.toLocaleDateString("en-GB") ?? "Start"}</span>
+      <span>→</span>
+      <span>{value[1]?.toLocaleDateString("en-GB") ?? "End"}</span>
+    </div>
+  )}
+/>
+```
+
+The `renderTrigger` element is rendered inside the `.rdp-wrapper` div, so popover positioning works the same as with the default trigger.

@@ -21,6 +21,7 @@ export function DateTimePicker({
   timeFormat = "24h",
   min,
   max,
+  renderTrigger,
 }: DateTimePickerProps) {
   const [value, setValue] = useControlled<DateValue>(controlledValue, defaultValue ?? null, onChange);
   const [open, setOpen] = useState(false);
@@ -69,6 +70,7 @@ export function DateTimePicker({
 
   return (
     <InputTrigger
+      value={value}
       displayValue={displayValue}
       placeholder={placeholder}
       className={className}
@@ -76,6 +78,7 @@ export function DateTimePicker({
       onClick={() => setOpen((o) => !o)}
       open={open}
       onClose={handleClose}
+      renderTrigger={renderTrigger}
     >
       <Popover open={open} onClose={handleClose} position={position}>
         <div className="rdp-datetime-layout">

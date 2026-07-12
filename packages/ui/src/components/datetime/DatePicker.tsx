@@ -17,6 +17,7 @@ export function DatePicker({
   position,
   min,
   max,
+  renderTrigger,
 }: DatePickerProps) {
   const [value, setValue] = useControlled<DateValue>(controlledValue, defaultValue ?? null, onChange);
   const [open, setOpen] = useState(false);
@@ -31,6 +32,7 @@ export function DatePicker({
 
   return (
     <InputTrigger
+      value={value}
       displayValue={displayValue}
       placeholder={placeholder}
       className={className}
@@ -38,6 +40,7 @@ export function DatePicker({
       onClick={() => setOpen((o) => !o)}
       open={open}
       onClose={() => setOpen(false)}
+      renderTrigger={renderTrigger}
     >
       <Popover open={open} onClose={() => setOpen(false)} position={position}>
         <Calendar

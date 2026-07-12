@@ -16,6 +16,7 @@ export function DateRangePicker({
   position,
   min,
   max,
+  renderTrigger,
 }: DateRangePickerProps) {
   const [range, setRange] = useState<DateRangeValue>(
     controlledValue ?? defaultValue ?? [null, null]
@@ -72,6 +73,7 @@ export function DateRangePicker({
 
   return (
     <RangeInputTrigger
+      value={currentRange}
       displayValues={displayValues}
       placeholder={placeholder ?? ["Start date", "End date"]}
       className={className}
@@ -79,6 +81,7 @@ export function DateRangePicker({
       onClick={handleOpen}
       open={open}
       onClose={handleClose}
+      renderTrigger={renderTrigger}
     >
       <Popover open={open} onClose={handleClose} position={position}>
         <Calendar

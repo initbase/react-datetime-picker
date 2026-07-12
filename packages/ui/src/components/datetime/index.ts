@@ -15,4 +15,6 @@ export type {
   DateValue,
   DateRangeValue,
   PopoverPosition,
+  SingleTriggerProps,
+  RangeTriggerProps,
 } from "./types";
