@@ -77,7 +77,7 @@ export function DateTimePicker({
       open={open}
       onClose={handleClose}
     >
-      <Popover open={open} onClose={handleClose} style={{ minWidth: 340 }} position={position}>
+      <Popover open={open} onClose={handleClose} position={position}>
         <div className="rdp-datetime-layout">
           <Calendar
             value={value}

@@ -97,7 +97,6 @@
   border-radius: var(--rdp-border-radius);
   box-shadow: var(--rdp-popover-shadow);
   padding: 12px;
-  min-width: 260px;
   box-sizing: border-box;
 }
 

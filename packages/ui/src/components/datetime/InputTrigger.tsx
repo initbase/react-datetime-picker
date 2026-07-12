@@ -29,7 +29,6 @@ export function InputTrigger({
         type="button"
         className="rdp-trigger"
         onClick={onClick}
-        style={{ width: "100%" }}
       >
         <span style={{ flex: 1, textAlign: "left", color: displayValue ? "inherit" : "var(--rdp-text-muted)" }}>
           {displayValue || placeholder || "Select..."}

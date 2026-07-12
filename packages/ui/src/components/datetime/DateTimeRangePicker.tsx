@@ -113,7 +113,7 @@ export function DateTimeRangePicker({
       open={open}
       onClose={handleClose}
     >
-      <Popover open={open} onClose={handleClose} style={{ minWidth: 420 }} position={position}>
+      <Popover open={open} onClose={handleClose} position={position}>
         <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
           <Calendar
             value={pendingStart ?? currentRange[0]}
