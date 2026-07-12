@@ -1,0 +1,16 @@
+{
+  "name": "react-component-library-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w packages/ui",
+    "typecheck": "npm run typecheck -w packages/ui && npm run typecheck -w apps/demo && npm run typecheck -w apps/docs",
+    "dev:demo": "npm run dev -w apps/demo",
+    "dev:docs": "npm run start -w apps/docs",
+    "publish:ui": "cd packages/ui && npm publish --access public"
+  }
+}
